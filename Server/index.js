@@ -33,6 +33,7 @@ app.use(fileupload({
 
 app.use(cors({
     origin:"http://localhost:3000",
+    origin:"https://mentorvate.vercel.app",
     credentials:true,
 }))
 
