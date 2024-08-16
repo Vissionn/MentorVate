@@ -31,7 +31,7 @@ const timeline = [
 const TimelineSection = ({backgroundGradient}) => {
   return (
     <div>
-        <div className='flex flex-row gap-20 items-center'>
+        <div className='flex lg:flex-row flex-col gap-20 items-center'>
           
           <div className='flex flex-col gap-8 '>
              

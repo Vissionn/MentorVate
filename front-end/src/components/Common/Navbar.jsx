@@ -114,7 +114,7 @@ const Navbar = (props) => {
                         MatchRoute(ele?.path)
                           ? " text-yellow-50"
                           : " text-white"
-                      }`}
+                      } lg:block hidden`}
                     >
                       {ele?.title}
                     </Link>

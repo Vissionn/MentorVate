@@ -32,8 +32,9 @@ app.use(fileupload({
 }));
 
 app.use(cors({
-    origin:"http://localhost:3000",
-    origin:"https://mentorvate.vercel.app",
+    origin:["https://mentorvate.vercel.app", "http://localhost:3000"],
+    // In development, setting Access-Control-Allow-Origin to * allows any domain to access your API, which is useful for testing across multiple local environments without dealing with CORS issues.
+    // origin:"*",
     credentials:true,
 }))
 

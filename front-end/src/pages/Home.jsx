@@ -61,11 +61,11 @@ const Home = () => {
         </div>
 
         {/* code section1 */}
-        <div>
+        <div className=" px-3">
           <CodeBlocks
-            position={"lg:flex-row"}
+            position={"lg:flex-row "}
             heading={
-              <div className="text-4xl font-semibold w-[90%]">
+              <div className="text-4xl font-semibold lg:w-[90%] w-[100%]">
                 Unlock your <HighlightText text={"coding potential"} /> with our
                 online courses.
               </div>
@@ -97,11 +97,11 @@ const Home = () => {
         </div>
 
         {/* code section 2 */}
-        <div>
+        <div className=" px-3">
           <CodeBlocks
-            position={"lg:flex-row-reverse sm:flex-row-reverse"}
+            position={"lg:flex-row-reverse "}
             heading={
-              <div className="text-4xl font-semibold w-[90%]">
+              <div className="text-4xl font-semibold lg:w-[90%] w-[100%]">
                 Start <HighlightText text={"coding in Seconds"} /> with our
                 online courses.
               </div>
@@ -154,13 +154,13 @@ const Home = () => {
         </div>
 
         <div className="mx-auto w-11/12 max-w-maxContent flex flex-col gap-7 justify-center items-center">
-          <div className="flex flex-row gap-3 mt-20">
-            <div className=" text-4xl font-inter font-semibold w-[594px] h-[88px]">
+          <div className="flex lg:flex-row flex-col gap-3 mt-20 w-[90%]">
+            <div className=" text-4xl font-inter font-semibold lg:w-[594px] w-fit lg:h-[88px]">
               Get the skills you need for a{" "}
               <HighlightText text={"job that is in demand"} />
             </div>
 
-            <div className="flex flex-col font-inter text-lg text-richblack-700 gap-6 w-[594px]">
+            <div className="flex flex-col font-inter text-lg text-richblack-700 gap-6 w-fit lg:w-[594px]">
               <p>
                 The modern MentorVate is the dictates its own terms. Today, to
                 be a competitive specialist requires more than professional
@@ -176,7 +176,7 @@ const Home = () => {
           </div>
 
           <TimelineSection
-            backgroundGradient={<div className="timelineImageGradient"></div>}
+            backgroundGradient={<div className="timelineImageGradient lg:block hidden"></div>}
           />
 
           <LearningLanguageSection />
