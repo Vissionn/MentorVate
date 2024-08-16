@@ -7,6 +7,7 @@ const CourseProgress = require("../models/CourseProgress")
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 const { populate } = require("../models/Category");
 const { convertSecondsToDuration } = require("../utils/SecToDuration");
+const { use } = require("../routes/User");
 // const cloudinary = require("cloudinary").v2;
 
 // const user = require("../models/user");
@@ -103,7 +104,7 @@ exports.deleteAccount = async(req,res) => {
         // get id
         const id = req.User.id;
         // validation
-        const userDetails = await User.findById(id);
+        let userDetails = await User.findById(id);
         if(!userDetails) {
             return res.status(404).json({
                 success:false,
@@ -112,10 +113,43 @@ exports.deleteAccount = async(req,res) => {
         }
         // delete additional profile
         await Profile.findByIdAndDelete({_id:userDetails.additionalDetails});
-        // TODO:  hw unenroll user from all enrolled courses
+        // unenroll user from all enrolled courses
+        for (const courseId of userDetails.courses) {
+          await Course.findByIdAndUpdate(
+            courseId,
+            { $pull: { studentEnrolled: id } },
+            { new: true }
+          )
+        }
 
         // delete user
-        await User.findByIdAndDelete({_id:id})
+        // await User.findByIdAndDelete({_id:id})
+
+        // delete user remaining with some fields
+        const keepFields = {
+          _id: userDetails._id,
+          firstName : userDetails.firstName,
+          lastName: userDetails.lastName,
+          image: userDetails.image,
+          createdAt : userDetails.createdAt,
+          updatedAt : userDetails.updatedAt,
+        }
+
+        userDetails = userDetails.toObject()
+        let fieldToUnset = {}
+        //  fieldToUnset = fieldToUnset.toObject()
+
+        for(const key in userDetails) {
+          if(userDetails.hasOwnProperty(key)) {
+            if(!keepFields[key]) {
+              fieldToUnset[key] = "" // remove the fields which are not in keepfields
+            }
+          }
+        }
+
+        await User.updateOne({_id:id}, {$unset:fieldToUnset})
+        // delete coursprogress of user
+        await CourseProgress.deleteMany({ userId: id })
 
         //return res
         return res.status(200).json({

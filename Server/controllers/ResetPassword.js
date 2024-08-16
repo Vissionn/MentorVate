@@ -32,7 +32,7 @@ exports.resetPasswordToken = async(req,res) => {
         )
 
         // create URL
-        const url = `http://localhost:3000/update-password/${token}`;
+        const url = `https://mentorvate.vercel.app/update-password/${token}`;
         
 
         // send mail containing the url
