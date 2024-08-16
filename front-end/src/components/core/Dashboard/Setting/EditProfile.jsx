@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
     const {user,editProfile} = useSelector((state) => state.profile);
-     console.log("user", user);
-     console.log("edit",editProfile);
+    //  console.log("user", user);
+    //  console.log("edit",editProfile);
      
     const {token} = useSelector((state) => state.auth);
     const dispatch = useDispatch()

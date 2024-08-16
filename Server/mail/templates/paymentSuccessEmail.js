@@ -67,7 +67,7 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/K5ySqS7/Mentor-Vate.png"
+            <a href="https://mentorvate.vercel.app/"><img class="logo" src="https://i.ibb.co/K5ySqS7/Mentor-Vate.png"
                     alt="MentorVate Logo"></a>
             <div class="message">Course Payment Confirmation</div>
             <div class="body">

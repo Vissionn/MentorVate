@@ -116,7 +116,7 @@ export function sendOtp(email, navigate) {
           email,
           Password,
         })
-        console.log("response:", response);
+       
         toast.success("Login")
         dispatch(setToken(response.data.token))
         dispatch(setUser(response.data.User))

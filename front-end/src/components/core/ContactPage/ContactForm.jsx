@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import countryCode from "../../../data/countrycode.json"
+import { contactusEndpoint } from '../../../Services/apis'
+import { apiConnector } from '../../../Services/apiConnector'
 
 const ContactForm = () => {
 
@@ -15,19 +17,25 @@ const ContactForm = () => {
             reset({
                 firstName:"",
                 lastName: '',
-                email: "",
+                Email: "",
                 message: "",
-                phoneNo : ''
+                phonenumber : ''
             })
         }
 
     },[reset, isSubmitSuccessful])
 
     const SubmitContact = async(data) => {
-        console.log("Contact" , data);
+         console.log("Contact" , data);
         setLoading(true)
         const response = {status:"OK"}
-        console.log("resposne" , response);
+         console.log("resposne" , response);
+        // setLoading(false)
+        try {
+          const res = await apiConnector("POST",contactusEndpoint.CONTACT_US_API,data)
+        } catch (error) {
+          console.log("ERROR MESSAGE - ", error)
+        }
         setLoading(false)
     }
 
@@ -75,7 +83,7 @@ const ContactForm = () => {
 
         {/* email */}
           <div className='flex flex-col gap-y-2'>
-            <label className='lablestyle'>Email:</label>
+            <label htmlFor='Email' className='lablestyle'>Email:</label>
             <input
               type="email"
               name="Email"
@@ -118,7 +126,7 @@ const ContactForm = () => {
              id='number'
              placeholder='Enter your Number'
              className='form-style w-[95%]'
-             {...register("number", 
+             {...register("phonenumber", 
              {
                  required:{value:true, message:"Please Enter your Number"},
                  maxLength:{value:10,message:"Invalid Phone Number"},
@@ -136,7 +144,7 @@ const ContactForm = () => {
 
           {/* Message */}
           <div className='flex flex-col gap-y-2'>
-            <label className='lablestyle'>Message:</label>
+            <label htmlFor='message' className='lablestyle'>Message:</label>
             <textarea
                 name='message'
                 id='message'
@@ -152,7 +160,7 @@ const ContactForm = () => {
 
         <button
         disabled={loading}
-        type="submit"
+        
         className={`rounded-md bg-yellow-50 px-6 py-3 text-center text-[13px] font-bold text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
          ${
            !loading &&

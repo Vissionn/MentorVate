@@ -28,7 +28,7 @@ const ChangePassword = () => {
             try {
                 // dispatch(ChangePasswordHandler(data,token,Navigate))
                  dispatch(changePassword(data,token,Navigate))
-                console.log("Password-data",data);
+                
             } catch (error) {
                 console.log("ERROR MESSAGE - ", error.message)
             }
