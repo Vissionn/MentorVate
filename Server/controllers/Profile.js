@@ -58,12 +58,16 @@ exports.UpdateProfile = async(req,res) => {
         //    })
 
        // update profile field
+       userDetails.firstName = firstName
+       userDetails.lastName = lastName
+       
        profileDetails.dateOfBirth = dateOfBirth;
        profileDetails.about = about;
        profileDetails.gender = gender;
        profileDetails.contactNumber = contactNumber;
 
        // save the updated profile
+       await userDetails.save()
        await profileDetails.save();
 
        console.log("Profile details" , profileDetails);
