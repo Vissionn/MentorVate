@@ -113,13 +113,14 @@ export const BuyCourseHandler = async (
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message);
     }
-
+    // console.log(process.env.RAZORPAY_KEY);
     console.log("COURSE_PAYMENT_API_RESPONSE", orderResponse);
     // toast.success("Congratulations, Course Purchased")
 
     // Opening the Razorpay SDK
     const options = {
-      key: process.env.RAZORPAY_KEY,
+      key: orderResponse.data.key,
+      // key: process.env.RAZORPAY_KEY,
       currency: orderResponse.data.data.currency,
       amount: `${orderResponse.data.data.amount}`,
       order_id: orderResponse.data.data.id,
